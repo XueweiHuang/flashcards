@@ -1,196 +1,103 @@
+# ✅ Spanish Flashcards App — Feature TODO List (Easy → Hard)
 
-# ✅ Flashcards App Development To-Do List
+## 🟢 Phase 1: Project Setup and Static Pages ✅ **COMPLETED**
 
-## 📌 Order: Easy → Hard
+- [x] Initialize project with Vite + React + TypeScript  
+  ✅ *Acceptance Criteria:* Running `npm run dev` starts a Vite dev server with a working React+TS project.
+  ✅ *Verified:* Project initialized, dev server runs on port 3000, tests passing (2/2)
 
----
+- [x] Set up file structure (`/components`, `/data`, `/pages`)  
+  ✅ *Acceptance Criteria:* Directory structure exists with logical separation of components, static data, and page views.
+  ✅ *Verified:* Created `/src/data/` with flashcards.ts, `/src/pages/` with HomePage, CategorySelectionPage, StatsPage
 
-### 1. Setup Project Structure ✅ **COMPLETED**
-**Tasks:**
-- ✅ Initialize Vite + React + TypeScript project
-- ✅ Configure ESLint + Prettier
-- ✅ Install Tailwind CSS
-- ✅ Setup `react-i18next` for multilingual support
+- [x] Create static JSON or TS file with flashcards grouped by category (animals, food, verbs)  
+  ✅ *Acceptance Criteria:* File exports at least 3 cards per category with correct format: `spanish`, `english`, `category`, and `quiz`.
+  ✅ *Verified:* Created flashcards.ts with 4 cards per category (12 total), proper TypeScript interface, includes quiz data
 
-**Acceptance Criteria:**
-- ✅ Project runs locally with `npm run dev` - **VERIFIED**
-- ✅ Tailwind styles apply correctly - **VERIFIED** (build successful, styles configured)
-- ✅ Language switcher works for English, French, Chinese - **VERIFIED** (unit tests passing)
+- [x] Create Home Page with navigation buttons:
+  - [x] Study Mode  
+    ✅ *Acceptance Criteria:* Button/link navigates to category selection for study mode.
+    ✅ *Verified:* Link to `/study` implemented with react-router-dom
+  - [x] Quiz Mode  
+    ✅ *Acceptance Criteria:* Button/link navigates to quiz category selection.
+    ✅ *Verified:* Link to `/quiz` implemented with react-router-dom
+  - [x] Stats Page  
+    ✅ *Acceptance Criteria:* Button/link navigates to the statistics page.
+    ✅ *Verified:* Link to `/stats` implemented with react-router-dom
 
-**Unit Tests:**
-- ✅ Verify initial render of `App.tsx` - **PASSING** (2/2 tests)
-- ✅ Check if language context loads correctly - **PASSING** (3/3 tests)
+**Phase 1 Status:** All acceptance criteria met. Build successful. Tests passing (12/12).
 
-**QA Tests:**
-- ⚠️ Confirm app loads in Chrome, Firefox, Safari - **MANUAL TESTING REQUIRED**
-- ⚠️ Verify responsive breakpoints (325px, 768px, 1024px) - **MANUAL TESTING REQUIRED**
+## 🟢 Phase 2: Flashcard Study Mode (Basic)
 
-**Status:** All automated tests passing. All acceptance criteria met for automated verification. Manual QA testing recommended before production deployment.
+- [x] Create `CategorySelectionPage` to pick a category  
+  ✅ *Acceptance Criteria:* Lists all 3 categories; clicking one proceeds to Study or Quiz based on mode selected.
 
----
+- [x] Create `Flashcard` component to show:
+  - [x] Spanish word (front side)  
+    ✅ *Acceptance Criteria:* Spanish word is displayed by default.
+  - [x] English word (back side)  
+    ✅ *Acceptance Criteria:* Card flips to show English translation.
+  - [x] Flip interaction (click-to-flip)  
+    ✅ *Acceptance Criteria:* Card responds to click or tap and visually flips to show other side.
 
-### 2. Implement Flashcard Component (Static)
-**Tasks:**
-- Create `Flashcard.tsx` component
-- Display Spanish word on front, English on back
-- Add flip animation
+- [ ] Display "✅ Right" and "❌ Wrong" buttons after flipping  
+  ✅ *Acceptance Criteria:* Buttons appear only after flipping and let the user mark the answer as correct or incorrect. After clicking a button, the next card is displayed.
 
-**Acceptance Criteria:**
-- Card flips on click
-- Spanish word visible initially, English after flip
+- [ ] Track incorrect answers in React state  
+  ✅ *Acceptance Criteria:* Cards marked as "Wrong" are stored in component-level or app-level state for later use.
 
-**Unit Tests:**
-- Render flashcard with mock data
-- Simulate click → verify flipped state
+- [ ] Allow user to move through all cards in the selected category  
+  ✅ *Acceptance Criteria:* User can navigate through the flashcards one by one until all cards are reviewed.
 
-**QA Tests:**
-- Check flip animation on mobile and desktop
-- Ensure text is readable in all languages
+## 🟡 Phase 3: Redo Mode (Repeat Wrong Cards)
 
----
+- [ ] Add "Redo Wrong Cards" button on Home or Study end screen  
+  ✅ *Acceptance Criteria:* Button appears after study session ends (if there were wrong cards); clicking it starts a redo session.
 
-### 3. Add Correct/Incorrect Buttons
-**Tasks:**
-- Add two buttons below card: “Correct” and “Incorrect”
-- Track user choice in component state
+- [ ] Show only previously failed cards in redo session  
+  ✅ *Acceptance Criteria:* Flashcard component is reused but only displays cards marked wrong in the previous round.
 
-**Acceptance Criteria:**
-- Buttons appear after flip
-- Clicking updates state correctly
+- [ ] Allow resetting of the "wrong" list  
+  ✅ *Acceptance Criteria:* User can clear the list of wrong cards from a button or settings section.
 
-**Unit Tests:**
-- Simulate button clicks → verify state updates
-- Ensure buttons only show after flip
+## 🟡 Phase 4: Quiz Mode
 
-**QA Tests:**
-- Test on touch devices (mobile)
-- Verify button accessibility (keyboard navigation)
+- [ ] Build `QuizSelectionPage` to pick a category and quiz type  
+  ✅ *Acceptance Criteria:* Page shows quiz types (Multiple Choice, Fill in the Blank) and categories to start the quiz.
 
----
+- [ ] Implement Multiple Choice Quiz:
+  - [ ] Display Spanish word  
+    ✅ *Acceptance Criteria:* Spanish word is clearly shown at the top.
+  - [ ] Show 4 English options (1 correct, 3 distractors from static data)  
+    ✅ *Acceptance Criteria:* Exactly 4 options are shown; one matches the correct answer from the flashcard data.
+  - [ ] Feedback on correct/incorrect selection  
+    ✅ *Acceptance Criteria:* User is informed immediately whether their choice was right or wrong.
 
-### 4. Track Incorrect Cards (Local State)
-**Tasks:**
-- Maintain array of incorrect card IDs in session
-- Display count of incorrect cards
+- [ ] Implement Fill-in-the-Blank Quiz:
+  - [ ] Display Spanish word  
+    ✅ *Acceptance Criteria:* Spanish word is visible as the prompt.
+  - [ ] Input field for English word  
+    ✅ *Acceptance Criteria:* User can type the English translation in a text box.
+  - [ ] Case-insensitive comparison  
+    ✅ *Acceptance Criteria:* Input is considered correct regardless of letter casing.
+  - [ ] Show if answer is correct or not  
+    ✅ *Acceptance Criteria:* App gives clear feedback (e.g., "Correct!" or "Wrong — the answer was: ...").
 
-**Acceptance Criteria:**
-- Incorrect cards tracked during session
-- Count updates dynamically
+## 🔴 Phase 5: Statistics Tracking
 
-**Unit Tests:**
-- Add incorrect card → verify array updates
-- Reset session clears incorrect cards
+- [ ] Track number of cards studied per category  
+  ✅ *Acceptance Criteria:* Every time a card is studied, it is counted and stored in the app's state per category.
 
-**QA Tests:**
-- Test multiple incorrect selections
-- Verify no duplicates in incorrect list
+- [ ] Track number of correct vs. incorrect responses  
+  ✅ *Acceptance Criteria:* Study and quiz sessions increment the respective counts for correct/wrong answers.
 
----
+- [ ] Store data in `localStorage` (or memory if persistence isn't needed)  
+  ✅ *Acceptance Criteria:* Stats persist even after browser refresh (if using localStorage); otherwise, reset with refresh.
 
-### 5. Redo Incorrect Cards Mode
-**Tasks:**
-- After session ends, allow user to review incorrect cards
-- Implement “Redo Mode” button
-
-**Acceptance Criteria:**
-- Clicking “Redo Mode” shows only incorrect cards
-- Session stats reset for redo mode
-
-**Unit Tests:**
-- Verify incorrect cards filter logic
-- Ensure redo mode resets stats
-
-**QA Tests:**
-- Complete session → enter redo mode → confirm only incorrect cards appear
-- Test on all screen sizes
-
----
-
-### 6. Quiz Mode: Multiple Choice
-**Tasks:**
-- Generate 1 correct answer + 3 distractors
-- Display options below question
-- Validate user selection
-
-**Acceptance Criteria:**
-- Correct answer recognized
-- Distractors are unique and not the correct answer
-
-**Unit Tests:**
-- Generate distractors → ensure uniqueness
-- Simulate selection → verify correctness
-
-**QA Tests:**
-- Test multiple rounds of quiz
-- Validate UI responsiveness for options
-
----
-
-### 7. Quiz Mode: Fill-in-the-Blank
-**Tasks:**
-- Display Spanish word, user types English translation
-- Validate exact spelling
-
-**Acceptance Criteria:**
-- Correct spelling passes, incorrect fails
-- Case sensitivity handled (optional)
-
-**Unit Tests:**
-- Validate exact match logic
-- Test edge cases (empty input, whitespace)
-
-**QA Tests:**
-- Test on mobile keyboard input
-- Verify error message for incorrect spelling
-
----
-
-### 8. Statistics Page
-**Tasks:**
-- Show total studied, correct vs incorrect
-- Reset stats on new session
-
-**Acceptance Criteria:**
-- Stats update dynamically during session
-- Reset works correctly
-
-**Unit Tests:**
-- Verify stats calculation logic
-- Test reset functionality
-
-**QA Tests:**
-- Check stats accuracy after multiple sessions
-- Validate layout on all breakpoints
-
----
-
-### 9. Authentication (Basic Login)
-**Tasks:**
-- Implement login form
-- Store token in memory (mock for now)
-- Prepare for future SSO integration
-
-**Acceptance Criteria:**
-- User can log in with username/password
-- Redirect to dashboard after login
-
-**Unit Tests:**
-- Validate form input
-- Mock login API → verify success/failure handling
-
-**QA Tests:**
-- Test login flow on desktop and mobile
-- Verify error handling for invalid credentials
-
----
-
-### 10. Internationalization (Full UI)
-**Tasks:**
-- Translate all UI text into English, French, Chinese
-- Implement language switcher in header
-
-**Acceptance Criteria:**
-- Switching language updates all UI text
-- Default language is English
-
-**Unit Tests:**
+- [ ] Create `StatsPage` to display:
+  - [ ] Total cards studied  
+    ✅ *Acceptance Criteria:* Shows a total count of studied cards across all categories.
+  - [ ] Number/percentage correct  
+    ✅ *Acceptance Criteria:* Displays total correct, incorrect, and overall accuracy %.
+  - [ ] Breakdown by category  
+    ✅ *Acceptance Criteria:* Stats are grouped and labeled by category (e.g., Animals: 80% correct).

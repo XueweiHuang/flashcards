@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
@@ -18,18 +19,28 @@ const HomePage = () => {
           <Link
             to="/study"
             className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-8 text-center group"
-            style={{ 
+            style={{
               borderRadius: '5px',
               backgroundColor: '#3b82f6',
               width: '200px',
             }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3b82f6'}
+            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) =>
+              (e.currentTarget.style.backgroundColor = '#2563eb')
+            }
+            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) =>
+              (e.currentTarget.style.backgroundColor = '#3b82f6')
+            }
           >
-            <div className="mb-4 group-hover:scale-110 transition-transform" style={{ fontSize: '4rem' }}>
+            <div
+              className="mb-4 group-hover:scale-110 transition-transform"
+              style={{ fontSize: '4rem' }}
+            >
               📚
             </div>
-            <h2 className="text-2xl font-bold mb-3" style={{ color: '#ffffff' }}>
+            <h2
+              className="text-2xl font-bold mb-3"
+              style={{ color: '#ffffff' }}
+            >
               Study Mode
             </h2>
             <p style={{ color: '#dbeafe' }}>
@@ -41,18 +52,28 @@ const HomePage = () => {
           <Link
             to="/quiz"
             className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-8 text-center group"
-            style={{ 
+            style={{
               borderRadius: '5px',
               backgroundColor: '#22c55e',
               width: '200px',
             }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#16a34a'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#22c55e'}
+            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) =>
+              (e.currentTarget.style.backgroundColor = '#16a34a')
+            }
+            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) =>
+              (e.currentTarget.style.backgroundColor = '#22c55e')
+            }
           >
-            <div className="mb-4 group-hover:scale-110 transition-transform" style={{ fontSize: '4rem' }}>
+            <div
+              className="mb-4 group-hover:scale-110 transition-transform"
+              style={{ fontSize: '4rem' }}
+            >
               🎯
             </div>
-            <h2 className="text-2xl font-bold mb-3" style={{ color: '#ffffff' }}>
+            <h2
+              className="text-2xl font-bold mb-3"
+              style={{ color: '#ffffff' }}
+            >
               Quiz Mode
             </h2>
             <p style={{ color: '#dcfce7' }}>
@@ -64,18 +85,28 @@ const HomePage = () => {
           <Link
             to="/stats"
             className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-8 text-center group"
-            style={{ 
+            style={{
               borderRadius: '5px',
               backgroundColor: '#a855f7',
               width: '200px',
             }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#9333ea'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#a855f7'}
+            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) =>
+              (e.currentTarget.style.backgroundColor = '#9333ea')
+            }
+            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) =>
+              (e.currentTarget.style.backgroundColor = '#a855f7')
+            }
           >
-            <div className="mb-4 group-hover:scale-110 transition-transform" style={{ fontSize: '4rem' }}>
+            <div
+              className="mb-4 group-hover:scale-110 transition-transform"
+              style={{ fontSize: '4rem' }}
+            >
               📊
             </div>
-            <h2 className="text-2xl font-bold mb-3" style={{ color: '#ffffff' }}>
+            <h2
+              className="text-2xl font-bold mb-3"
+              style={{ color: '#ffffff' }}
+            >
               Statistics
             </h2>
             <p style={{ color: '#f3e8ff' }}>

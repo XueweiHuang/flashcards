@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const StatsPage = () => {
@@ -10,14 +11,13 @@ const StatsPage = () => {
           <h1 className="text-4xl font-bold text-gray-800 mb-4">
             📊 Your Statistics
           </h1>
-          <p className="text-xl text-gray-600">
-            Track your learning progress
-          </p>
+          <p className="text-xl text-gray-600">Track your learning progress</p>
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
           <p className="text-gray-600 text-center">
-            Statistics will be available once you complete Phase 5 of the project.
+            Statistics will be available once you complete Phase 5 of the
+            project.
           </p>
           <p className="text-gray-500 text-center mt-4 text-sm">
             Start studying or taking quizzes to see your stats here!
@@ -28,7 +28,7 @@ const StatsPage = () => {
           <button
             onClick={() => navigate('/')}
             className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-bold"
-            style={{ 
+            style={{
               borderRadius: '5px',
               backgroundColor: '#64748b',
               color: '#ffffff',
@@ -36,8 +36,12 @@ const StatsPage = () => {
               border: 'none',
               cursor: 'pointer',
             }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#475569'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#64748b'}
+            onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) =>
+              (e.currentTarget.style.backgroundColor = '#475569')
+            }
+            onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) =>
+              (e.currentTarget.style.backgroundColor = '#64748b')
+            }
           >
             ← Back to Home
           </button>

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Flashcard from './Flashcard';
@@ -90,5 +90,71 @@ describe('Flashcard', () => {
     const card = screen.getByRole('button');
     expect(card).toHaveAttribute('tabIndex', '0');
     expect(card).toHaveAttribute('aria-label');
+  });
+
+  it('shows correct/incorrect buttons after flipping', async () => {
+    const user = userEvent.setup();
+    render(<Flashcard {...mockFlashcard} />);
+
+    // Buttons should not be visible initially
+    expect(screen.queryByText(/i got it right/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/i got it wrong/i)).not.toBeInTheDocument();
+
+    // Click to flip
+    const card = screen.getByRole('button', { name: /flashcard/i });
+    await user.click(card);
+
+    // Buttons should now be visible
+    expect(screen.getByText(/i got it right/i)).toBeInTheDocument();
+    expect(screen.getByText(/i got it wrong/i)).toBeInTheDocument();
+  });
+
+  it('calls onCorrect when correct button is clicked', async () => {
+    const user = userEvent.setup();
+    const onCorrect = vi.fn();
+    render(<Flashcard {...mockFlashcard} onCorrect={onCorrect} />);
+
+    // Flip the card
+    const card = screen.getByRole('button', { name: /flashcard/i });
+    await user.click(card);
+
+    // Click correct button
+    const correctButton = screen.getByRole('button', {
+      name: /mark as correct/i,
+    });
+    await user.click(correctButton);
+
+    expect(onCorrect).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls onIncorrect when incorrect button is clicked', async () => {
+    const user = userEvent.setup();
+    const onIncorrect = vi.fn();
+    render(<Flashcard {...mockFlashcard} onIncorrect={onIncorrect} />);
+
+    // Flip the card
+    const card = screen.getByRole('button', { name: /flashcard/i });
+    await user.click(card);
+
+    // Click incorrect button
+    const incorrectButton = screen.getByRole('button', {
+      name: /mark as incorrect/i,
+    });
+    await user.click(incorrectButton);
+
+    expect(onIncorrect).toHaveBeenCalledTimes(1);
+  });
+
+  it('hides buttons when showButtons is false', async () => {
+    const user = userEvent.setup();
+    render(<Flashcard {...mockFlashcard} showButtons={false} />);
+
+    // Flip the card
+    const card = screen.getByRole('button', { name: /flashcard/i });
+    await user.click(card);
+
+    // Buttons should not be visible even after flipping
+    expect(screen.queryByText(/i got it right/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/i got it wrong/i)).not.toBeInTheDocument();
   });
 });

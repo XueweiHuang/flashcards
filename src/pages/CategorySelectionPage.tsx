@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { categories } from '../data/flashcards';
 
@@ -32,7 +33,10 @@ const CategorySelectionPage = () => {
           </p>
         </div>
 
-        <div className="flex flex-col items-center mb-8" style={{ gap: '2rem' }}>
+        <div
+          className="flex flex-col items-center mb-8"
+          style={{ gap: '2rem' }}
+        >
           {categories.map((category, index) => {
             const colorConfigs = [
               { bg: '#f97316', hover: '#ea580c' }, // orange
@@ -45,18 +49,28 @@ const CategorySelectionPage = () => {
                 key={category}
                 onClick={() => handleCategorySelect(category)}
                 className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-8 text-center group"
-                style={{ 
+                style={{
                   borderRadius: '5px',
                   backgroundColor: config.bg,
                   width: '180px',
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = config.hover}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = config.bg}
+                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) =>
+                  (e.currentTarget.style.backgroundColor = config.hover)
+                }
+                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) =>
+                  (e.currentTarget.style.backgroundColor = config.bg)
+                }
               >
-                <div className="mb-4 group-hover:scale-110 transition-transform" style={{ fontSize: '5rem' }}>
+                <div
+                  className="mb-4 group-hover:scale-110 transition-transform"
+                  style={{ fontSize: '5rem' }}
+                >
                   {categoryEmojis[category]}
                 </div>
-                <h2 className="text-2xl font-bold capitalize" style={{ color: '#ffffff' }}>
+                <h2
+                  className="text-2xl font-bold capitalize"
+                  style={{ color: '#ffffff' }}
+                >
                   {category}
                 </h2>
               </button>
@@ -68,7 +82,7 @@ const CategorySelectionPage = () => {
           <button
             onClick={() => navigate('/')}
             className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-bold"
-            style={{ 
+            style={{
               borderRadius: '5px',
               backgroundColor: '#64748b',
               color: '#ffffff',
@@ -76,8 +90,12 @@ const CategorySelectionPage = () => {
               border: 'none',
               cursor: 'pointer',
             }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#475569'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#64748b'}
+            onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) =>
+              (e.currentTarget.style.backgroundColor = '#475569')
+            }
+            onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) =>
+              (e.currentTarget.style.backgroundColor = '#64748b')
+            }
           >
             ← Back to Home
           </button>

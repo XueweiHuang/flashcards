@@ -152,8 +152,13 @@ const StudySessionPage = () => {
             <div
               className="bg-blue-500 h-2 rounded-full transition-all duration-300"
               style={{
-                width: `${((currentCardIndex + 1) / cards.length) * 100}%`,
+                width: `${Math.round(((currentCardIndex + 1) / cards.length) * 100)}%`,
               }}
+              role="progressbar"
+              aria-valuenow={currentCardIndex + 1}
+              aria-valuemin={0}
+              aria-valuemax={cards.length}
+              aria-label={`Progress: ${currentCardIndex + 1} of ${cards.length} cards`}
             ></div>
           </div>
 
@@ -173,7 +178,7 @@ const StudySessionPage = () => {
         />
 
         {/* Navigation */}
-        <div className="text-center" style={{ marginTop: '60px' }}>
+        <div className="text-center mt-[60px]">
           <button
             onClick={() => navigate('/study')}
             className="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg shadow transition-all duration-200"

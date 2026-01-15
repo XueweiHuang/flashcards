@@ -1,125 +1,67 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavigationCard } from '../components/ui/NavigationCard';
+import { MODE_CONFIG } from '../constants/theme';
 
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
       <div className="max-w-2xl w-full">
-        <div className="text-center mb-12">
+        {/* Header Section */}
+        <header className="text-center mb-12">
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
             Spanish Flashcards
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 mb-6">
             Learn Spanish vocabulary through interactive flashcards and quizzes
           </p>
-        </div>
 
-        <div className="flex flex-col items-center" style={{ gap: '2rem' }}>
-          {/* Study Mode */}
-          <Link
+          {/* Welcome Message */}
+          <div className="bg-white rounded-xl shadow-lg p-6 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 leading-relaxed">
+              👋 <span className="font-semibold">Welcome!</span> Start your
+              Spanish learning journey today. Choose a study mode to practice
+              vocabulary, take interactive quizzes, or track your progress.
+              Every word you learn brings you closer to fluency!
+            </p>
+          </div>
+        </header>
+
+        {/* Navigation Cards */}
+        <nav
+          className="flex flex-col items-center gap-8"
+          aria-label="Main navigation"
+        >
+          <NavigationCard
             to="/study"
-            className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-8 text-center group"
-            style={{
-              borderRadius: '5px',
-              backgroundColor: '#3b82f6',
-              width: '200px',
-            }}
-            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) =>
-              (e.currentTarget.style.backgroundColor = '#2563eb')
-            }
-            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) =>
-              (e.currentTarget.style.backgroundColor = '#3b82f6')
-            }
-          >
-            <div
-              className="mb-4 group-hover:scale-110 transition-transform"
-              style={{ fontSize: '4rem' }}
-            >
-              📚
-            </div>
-            <h2
-              className="text-2xl font-bold mb-3"
-              style={{ color: '#ffffff' }}
-            >
-              Study Mode
-            </h2>
-            <p style={{ color: '#dbeafe' }}>
-              Learn with flashcards at your own pace
-            </p>
-          </Link>
-
-          {/* Quiz Mode */}
-          <Link
+            emoji={MODE_CONFIG.study.emoji}
+            title="Study Mode"
+            description="Learn with flashcards at your own pace"
+            color={MODE_CONFIG.study.color}
+            hoverColor={MODE_CONFIG.study.hoverColor}
+          />
+          <NavigationCard
             to="/quiz"
-            className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-8 text-center group"
-            style={{
-              borderRadius: '5px',
-              backgroundColor: '#22c55e',
-              width: '200px',
-            }}
-            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) =>
-              (e.currentTarget.style.backgroundColor = '#16a34a')
-            }
-            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) =>
-              (e.currentTarget.style.backgroundColor = '#22c55e')
-            }
-          >
-            <div
-              className="mb-4 group-hover:scale-110 transition-transform"
-              style={{ fontSize: '4rem' }}
-            >
-              🎯
-            </div>
-            <h2
-              className="text-2xl font-bold mb-3"
-              style={{ color: '#ffffff' }}
-            >
-              Quiz Mode
-            </h2>
-            <p style={{ color: '#dcfce7' }}>
-              Test your knowledge with interactive quizzes
-            </p>
-          </Link>
-
-          {/* Stats Page */}
-          <Link
+            emoji={MODE_CONFIG.quiz.emoji}
+            title="Quiz Mode"
+            description="Test your knowledge with interactive quizzes"
+            color={MODE_CONFIG.quiz.color}
+            hoverColor={MODE_CONFIG.quiz.hoverColor}
+          />
+          <NavigationCard
             to="/stats"
-            className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-8 text-center group"
-            style={{
-              borderRadius: '5px',
-              backgroundColor: '#a855f7',
-              width: '200px',
-            }}
-            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) =>
-              (e.currentTarget.style.backgroundColor = '#9333ea')
-            }
-            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) =>
-              (e.currentTarget.style.backgroundColor = '#a855f7')
-            }
-          >
-            <div
-              className="mb-4 group-hover:scale-110 transition-transform"
-              style={{ fontSize: '4rem' }}
-            >
-              📊
-            </div>
-            <h2
-              className="text-2xl font-bold mb-3"
-              style={{ color: '#ffffff' }}
-            >
-              Statistics
-            </h2>
-            <p style={{ color: '#f3e8ff' }}>
-              Track your progress and performance
-            </p>
-          </Link>
-        </div>
+            emoji={MODE_CONFIG.stats.emoji}
+            title="Statistics"
+            description="Track your progress and performance"
+            color={MODE_CONFIG.stats.color}
+            hoverColor={MODE_CONFIG.stats.hoverColor}
+          />
+        </nav>
 
-        <div className="mt-12 text-center">
+        {/* Footer Help Text */}
+        <footer className="mt-12 text-center">
           <p className="text-gray-600 text-sm">
             Choose a mode above to get started!
           </p>
-        </div>
+        </footer>
       </div>
     </div>
   );

@@ -9,6 +9,14 @@ test.describe('Home Page', () => {
     // Check if the welcome message is displayed
     await expect(page.getByText(/spanish flashcards/i)).toBeVisible();
 
+    // Check for welcome card message
+    await expect(
+      page.getByText(/welcome! start your spanish learning journey/i),
+    ).toBeVisible();
+    await expect(
+      page.getByText(/every word you learn brings you closer to fluency/i),
+    ).toBeVisible();
+
     // Check if navigation options are present
     await expect(
       page.getByRole('link', { name: /study mode/i }),
@@ -18,6 +26,24 @@ test.describe('Home Page', () => {
     ).toBeVisible();
     await expect(
       page.getByRole('link', { name: /statistics/i }),
+    ).toBeVisible();
+  });
+
+  test('should display welcoming card with proper styling', async ({
+    page,
+  }) => {
+    await page.goto('/');
+
+    // Find the welcome card container
+    const welcomeCard = page.locator('div.bg-white.rounded-xl.shadow-lg');
+    await expect(welcomeCard).toBeVisible();
+
+    // Verify the wave emoji is present
+    await expect(page.getByText('👋')).toBeVisible();
+
+    // Verify key phrases in the welcome message
+    await expect(
+      page.getByText(/choose a study mode to practice vocabulary/i),
     ).toBeVisible();
   });
 

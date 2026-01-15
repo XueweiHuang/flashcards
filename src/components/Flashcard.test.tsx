@@ -105,8 +105,8 @@ describe('Flashcard', () => {
     await user.click(card);
 
     // Buttons should now be visible
-    expect(screen.getByText(/i got it right/i)).toBeInTheDocument();
-    expect(screen.getByText(/i got it wrong/i)).toBeInTheDocument();
+    expect(screen.getByText(/right/i)).toBeInTheDocument();
+    expect(screen.getByText(/wrong/i)).toBeInTheDocument();
   });
 
   it('calls onCorrect when correct button is clicked', async () => {
